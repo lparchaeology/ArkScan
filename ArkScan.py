@@ -11,20 +11,22 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_defaultButton.clicked.connect(self.defaultArea)
         self.ui.m_scanButton.clicked.connect(self.scan)
         self.ui.m_autocropButton.clicked.connect(self.autocrop)
-        self.ui.m_autoscanButton.clicked.connect(self.autoscan)
+        self.ui.m_saveButton.clicked.connect(self.save)
+        self.ui.m_scanSaveButton.clicked.connect(self.scanSave)
+        self.ui.m_allButton.clicked.connect(self.all)
         self.scanPixmap = QtGui.QPixmap('logo.png')
         self.scene = QtGui.QGraphicsScene(self)
         self.scanItem = self.scene.addPixmap(self.scanPixmap)
         self.ui.m_scanView.setScene(self.scene)
 
-        self.savePath = '/filebin/Development/'
-        self.saveName = 'test'
+        self.savePath = '/home/odysseus/'
 
         self.process = QtCore.QProcess()
         self.process.started.connect(self.processStarted)
         self.process.finished.connect(self.processFinished)
         self.process.error.connect(self.processError)
         self.process.readyReadStandardError.connect(self.showProcessError)
+        self.reader = QtGui.QImageReader(self.process)
 
     def showText(self, text):
         self.ui.m_outputText.append(text)
@@ -34,18 +36,14 @@ class ArkScan(QtGui.QMainWindow):
 
     def processFinished(self):
         if (self.process.exitCode() == 0):
-            self.showText('Scanning process finished OK!')
-            output = self.process.readAllStandardOutput()
-            image = QtGui.QImage.fromData(output)
+            self.showText('Loading scanned image')
+            #image = QtGui.QImage.fromData(self.process.readAllStandardOutput())
+            image = self.reader.read()
             if (image.isNull()):
-                self.showText('Invalid image conversion')
+                self.showText('Scanning failed: invalid image conversion')
             else:
                 self.scanPixmap.convertFromImage(image)
-            #buffer = QtCore.QBuffer(output)
-            #reader = QtGui.QImageReader(buffer, 'tiff')
-            #img = reader.read()
-            #if (img.isNull()):
-            #    self.ui.m_outputText.append(reader.errorString())
+                self.showText('Scanning process finished OK!')
         else:
             self.showText('Scanning process failed!')
 
@@ -59,28 +57,38 @@ class ArkScan(QtGui.QMainWindow):
         self.showText(str(self.process.readAllStandardError()))
 
     def preview(self):
-        return
+        command = 'scanimage --mode Color --resolution 75'
+        self.process.start(command)
 
     def defaultArea(self):
         return
 
     def scan(self):
-        filename = self.savePath + self.saveName + '.tiff'
         #command = 'scanimage --mode Color --resolution 300 --format=tiff -t 35 -y 330 > ' + filename
-        args = ['--format=tiff', '-x 10', '-y 10']
-        #args = ['--mode Color', '--resolution 300', '--format=tiff', '-t 35', '-y 330']
+        command = 'scanimage --mode Color --resolution 300'
         self.process.setWorkingDirectory(self.savePath)
-        #process.start(command)
-        self.process.start('scanimage', args)
-        self.process.waitForStarted(-1);
-        self.process.waitForFinished(-1);
+        self.process.start(command)
+        #self.process.waitForStarted(-1);
+        #self.process.waitForFinished(-1);
 
     def autocrop(self):
         return
 
-    def autoscan(self):
+    def save(self):
+        filename = self.savePath + self.ui.m_siteEdit.text() + '_' + str(self.ui.m_eastSpin.value()) + '_' + str(self.ui.m_northSpin.value()) + '_' + '.png'
+        if (self.scanPixmap.save(filename, 'PNG')):
+            self.showText('Image saved as ' + filename)
+        else:
+            self.showText('Image save as ' + filename + ' failed!')
+
+    def scanSave(self):
+        self.scan()
+        self.save()
+
+    def all(self):
         self.scan()
         self.autocrop()
+        self.save()
 
 app = QtGui.QApplication(sys.argv)
 
