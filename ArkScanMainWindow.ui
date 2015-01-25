@@ -14,13 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QSplitter" name="splitter_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <layout class="QFormLayout" name="formLayout">
@@ -144,79 +144,79 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="m_defaultButton">
+         <widget class="QPushButton" name="m_defaultScanAreaButton">
           <property name="text">
            <string>Default Scan Area</string>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="m_scanSizeLayout">
           <item row="1" column="0">
-           <widget class="QLabel" name="m_xLabel">
+           <widget class="QLabel" name="m_xScanLabel">
             <property name="text">
              <string>X:</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QSpinBox" name="m_xSpin">
+           <widget class="QSpinBox" name="m_xScanSpin">
             <property name="maximum">
              <number>297</number>
             </property>
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QLabel" name="m_yLabel">
+           <widget class="QLabel" name="m_yScanLabel">
             <property name="text">
              <string>Y:</string>
             </property>
            </widget>
           </item>
           <item row="1" column="3">
-           <widget class="QSpinBox" name="m_ySpin">
+           <widget class="QSpinBox" name="m_yScanSpin">
             <property name="maximum">
              <number>433</number>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="m_wLabel">
+           <widget class="QLabel" name="m_wScanLabel">
             <property name="text">
              <string>W:</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QSpinBox" name="m_wSpin">
+           <widget class="QSpinBox" name="m_wScanSpin">
             <property name="maximum">
              <number>297</number>
             </property>
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QLabel" name="m_hLabel">
+           <widget class="QLabel" name="m_hScanLabel">
             <property name="text">
              <string>H:</string>
             </property>
            </widget>
           </item>
           <item row="2" column="3">
-           <widget class="QSpinBox" name="m_hSpin">
+           <widget class="QSpinBox" name="m_hScanSpin">
             <property name="maximum">
              <number>433</number>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="m_widthLabel">
+           <widget class="QLabel" name="m_scanSizeLabel1">
             <property name="text">
              <string>0mm - 297mm</string>
             </property>
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QLabel" name="m_heightLabel">
+           <widget class="QLabel" name="m_scanSizeLabel2">
             <property name="text">
              <string>0mm - 433mm</string>
             </property>
@@ -232,9 +232,90 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="m_autocropButton">
+         <widget class="QPushButton" name="m_detectCropAreaButton">
           <property name="text">
-           <string>Auto Crop</string>
+           <string>Detect Crop Area</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="m_cropSizeLayout">
+          <item row="1" column="0">
+           <widget class="QLabel" name="m_xCropLabel">
+            <property name="text">
+             <string>X:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="m_xCropSpin">
+            <property name="maximum">
+             <number>99999</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="m_yCropLabel">
+            <property name="text">
+             <string>Y:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QSpinBox" name="m_yCropSpin">
+            <property name="maximum">
+             <number>99999</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="m_wCropLabel">
+            <property name="text">
+             <string>W:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="m_wCropSpin">
+            <property name="maximum">
+             <number>99999</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="m_hCropLabel">
+            <property name="text">
+             <string>H:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QSpinBox" name="m_hCropSpin">
+            <property name="maximum">
+             <number>99999</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="m_pixelLabel1">
+            <property name="text">
+             <string>Pixels</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="m_pixelLabel2">
+            <property name="text">
+             <string>Pixels</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_cropButton">
+          <property name="text">
+           <string>Crop</string>
           </property>
          </widget>
         </item>
@@ -285,7 +366,35 @@
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <widget class="QGraphicsView" name="m_scanView"/>
+       <widget class="QGraphicsView" name="m_scanView">
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="backgroundBrush">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>195</red>
+           <green>195</green>
+           <blue>195</blue>
+          </color>
+         </brush>
+        </property>
+        <property name="foregroundBrush">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>195</red>
+           <green>195</green>
+           <blue>195</blue>
+          </color>
+         </brush>
+        </property>
+        <property name="interactive">
+         <bool>true</bool>
+        </property>
+        <property name="dragMode">
+         <enum>QGraphicsView::RubberBandDrag</enum>
+        </property>
+       </widget>
        <widget class="QTextBrowser" name="m_outputText"/>
       </widget>
      </widget>
@@ -298,7 +407,7 @@
      <x>0</x>
      <y>0</y>
      <width>1089</width>
-     <height>22</height>
+     <height>33</height>
     </rect>
    </property>
    <widget class="QMenu" name="m_menu">
