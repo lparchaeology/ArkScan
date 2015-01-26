@@ -12,16 +12,16 @@ class ArkScan(QtGui.QMainWindow):
 
     # Default settings
     #TODO load from QSettings
-    scanSavePath = '/media/build/ark/'
-    cropSavePath = '/media/build/ark/'
+    scanSavePath = '/filebin/Development/'
+    cropSavePath = '/filebin/Development/'
     defaultSite = 'MNO12'
     defaultEast = 100
     defaultNorth = 100
     defaultNumber = 1000
     defaultScanX = 0
-    defaultScanY = 0
-    defaultScanW = 215
-    defaultScanH = 296
+    defaultScanY = 35
+    defaultScanW = 296
+    defaultScanH = 330
 
     # Internal flags
     useReader = False
@@ -135,6 +135,7 @@ class ArkScan(QtGui.QMainWindow):
     def scanProcessEnded(self):
         if (self.scanProcess.exitCode() != 0):
             self.showText('Scanning image failed!')
+            self.enableUi(True)
             return
 
         image = QtGui.QImage()
@@ -169,6 +170,7 @@ class ArkScan(QtGui.QMainWindow):
     def cropProcessEnded(self):
         if (self.cropProcess.exitCode() != 0):
             self.showText('Detecting crop area failed!')
+            self.enableUi(True)
             return
 
         info = str(self.cropProcess.readAllStandardOutput())
