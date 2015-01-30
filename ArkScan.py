@@ -1,33 +1,27 @@
 import sys
-from enum import Enum
 from PyQt4 import QtCore, QtGui
 import ArkScanMainWindow
-
-class ScanStatus(Enum):
-    invalid = 0
-    scanned = 1
-    cropped = 2
 
 class ArkScan(QtGui.QMainWindow):
 
     # Default settings
     #TODO load from QSettings
-    scanSavePath = '/filebin/Development/'
-    cropSavePath = '/filebin/Development/'
+    scanSavePath = '/filebin/1120L - 100 Minories/GIS/plans/incoming/scans/'
+    cropSavePath = '/filebin/1120L - 100 Minories/GIS/plans/incoming/raw/'
     defaultSite = 'MNO12'
     defaultEast = 100
     defaultNorth = 100
     defaultNumber = 1000
     defaultScanX = 0
-    defaultScanY = 35
-    defaultScanW = 296
-    defaultScanH = 330
+    defaultScanY = 39
+    defaultScanW = 290
+    defaultScanH = 320
 
     # Internal flags
     useReader = False
     cropAfterScan = False
     saveAfterScan = False
-    status = ScanStatus.invalid
+    status = 'invalid'
 
     def __init__(self):
         super(ArkScan, self).__init__()
@@ -96,6 +90,10 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_saveButton.setEnabled(status)
         self.ui.m_scanSaveButton.setEnabled(status)
         self.ui.m_allButton.setEnabled(status)
+        if (status):
+            self.ui.m_progressBar.setRange(0, 100)
+        else:
+            self.ui.m_progressBar.setRange(0, 0)
 
     def updatePixmap(self):
         self.scanItem.setPixmap(self.scanPixmap)
@@ -152,7 +150,7 @@ class ArkScan(QtGui.QMainWindow):
             else:
                 self.scanPixmap.load('temp.tiff')
             self.updatePixmap()
-            self.status = ScanStatus.scanned
+            self.status = 'scanned'
             self.showText('Scanning image completed!')
             if (self.cropAfterScan):
                 self.detectCropArea()
@@ -198,9 +196,8 @@ class ArkScan(QtGui.QMainWindow):
 
     def preview(self):
         self.enableUi(False)
-        self.status = ScanStatus.invalid
-        command = 'scanimage --mode Color --resolution 75'
-        #command = 'scanimage --mode Color --resolution 75 --lamp-off-at-exit=no'
+        self.status = 'invalid'
+        command = 'scanimage --mode Color --resolution 75 --lamp-off-at-exit=no'
         if (not self.useReader):
             # PNM unsupported so write to temp file instead as TIFF can't be streamed
             self.scanProcess.setStandardOutputFile('temp.tiff')
@@ -215,10 +212,9 @@ class ArkScan(QtGui.QMainWindow):
 
     def scan(self):
         self.enableUi(False)
-        self.status = ScanStatus.invalid
+        self.status = 'invalid'
         scanRect = QtCore.QRect(self.ui.m_xScanSpin.value(), self.ui.m_yScanSpin.value(), self.ui.m_wScanSpin.value(), self.ui.m_hScanSpin.value())
-        command = 'scanimage --mode Color --resolution 300 -l%d -t%d -x%d -y%d' % (scanRect.x(), scanRect.y(), scanRect.width(), scanRect.height())
-        #command = 'scanimage --mode Color --resolution 300 --lamp-off-at-exit=no -l%d -t%d -x%d -y%d' % (scanRect.x(), scanRect.y(), scanRect.width(), scanRect.height())
+        command = 'scanimage --mode Color --resolution 300 --lamp-off-at-exit=no -l%d -t%d -x%d -y%d' % (scanRect.x(), scanRect.y(), scanRect.width(), scanRect.height())
         if (not self.useReader):
             # PNM unsupported so write to temp file instead as TIFF can't be streamed
             self.scanProcess.setStandardOutputFile('temp.tiff')
@@ -236,7 +232,7 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_hCropSpin.setValue(self.scanPixmap.height())
 
     def detectCropArea(self):
-        if (self.status == ScanStatus.invalid):
+        if (self.status == 'invalid'):
             return
         self.enableUi(False)
         if (self.scanPixmap.save('temp_crop.png', 'PNG')):
@@ -246,9 +242,9 @@ class ArkScan(QtGui.QMainWindow):
             self.showText('Detect crop area failed, could not write temp file!')
 
     def crop(self):
-        self.enableUi(False)
-        if (self.status == ScanStatus.invalid):
+        if (self.status == 'invalid'):
             return
+        self.enableUi(False)
         self.enableUi(False)
         cropRect = QtCore.QRect(self.ui.m_xCropSpin.value(), self.ui.m_yCropSpin.value(), self.ui.m_wCropSpin.value(), self.ui.m_hCropSpin.value())
         self.scanPixmap = self.scanPixmap.copy(cropRect)
@@ -260,16 +256,21 @@ class ArkScan(QtGui.QMainWindow):
             self.enableUi(True)
 
     def save(self):
-        self.enableUi(False)
-        if (self.status == ScanStatus.invalid):
+        if (self.status == 'invalid'):
             return
+        self.enableUi(False)
         filename = ''
-        if (self.status == ScanStatus.scanned):
+        if (self.status == 'scanned'):
             filename = self.scanSavePath
         else:
             filename = self.cropSavePath
         filename = filename + self.planName() + '.png'
-        if (self.scanPixmap.save(filename, 'PNG')):
+        ok = True
+        if (QtCore.QFileInfo(filename).exists()):
+            result = QtGui.QMessageBox.warning(None, 'File Already Exists!', 'The chosen scan file already exists. Do you want to overwrite it?', QtGui.QMessageBox.Save | QtGui.QMessageBox.Cancel)
+            if (result != QtGui.QMessageBox.Save):
+                ok = False
+        if (ok and self.scanPixmap.save(filename, 'PNG')):
             self.showText('Image saved as ' + filename)
         else:
             self.showText('Image save as ' + filename + ' failed!')

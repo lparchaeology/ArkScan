@@ -20,7 +20,7 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <layout class="QFormLayout" name="formLayout">
@@ -45,6 +45,9 @@
            <widget class="QLabel" name="m_typeLabel">
             <property name="text">
              <string>Type:</string>
+            </property>
+            <property name="buddy">
+             <cstring>m_typeCombo</cstring>
             </property>
            </widget>
           </item>
@@ -132,9 +135,36 @@
             <property name="text">
              <string>Suffix:</string>
             </property>
+            <property name="buddy">
+             <cstring>m_suffixEdit</cstring>
+            </property>
            </widget>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_scanSaveButton">
+          <property name="text">
+           <string>Scan and Save</string>
+          </property>
+          <property name="default">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_allButton">
+          <property name="text">
+           <string>Scan, Auto Crop and Save</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="m_previewButton">
@@ -327,20 +357,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="m_scanSaveButton">
-          <property name="text">
-           <string>Scan and Save</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_allButton">
-          <property name="text">
-           <string>Scan, Auto Crop and Save</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QProgressBar" name="m_progressBar">
           <property name="value">
            <number>0</number>
@@ -407,7 +423,7 @@
      <x>0</x>
      <y>0</y>
      <width>1089</width>
-     <height>33</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="m_menu">
@@ -425,6 +441,32 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>m_siteEdit</tabstop>
+  <tabstop>m_typeCombo</tabstop>
+  <tabstop>m_numberSpin</tabstop>
+  <tabstop>m_suffixEdit</tabstop>
+  <tabstop>m_eastSpin</tabstop>
+  <tabstop>m_northSpin</tabstop>
+  <tabstop>m_scanSaveButton</tabstop>
+  <tabstop>m_allButton</tabstop>
+  <tabstop>m_previewButton</tabstop>
+  <tabstop>m_defaultScanAreaButton</tabstop>
+  <tabstop>m_xScanSpin</tabstop>
+  <tabstop>m_yScanSpin</tabstop>
+  <tabstop>m_wScanSpin</tabstop>
+  <tabstop>m_hScanSpin</tabstop>
+  <tabstop>m_scanButton</tabstop>
+  <tabstop>m_detectCropAreaButton</tabstop>
+  <tabstop>m_xCropSpin</tabstop>
+  <tabstop>m_yCropSpin</tabstop>
+  <tabstop>m_wCropSpin</tabstop>
+  <tabstop>m_hCropSpin</tabstop>
+  <tabstop>m_cropButton</tabstop>
+  <tabstop>m_saveButton</tabstop>
+  <tabstop>m_scanView</tabstop>
+  <tabstop>m_outputText</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
