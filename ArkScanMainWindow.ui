@@ -112,12 +112,18 @@
               <property name="maximum">
                <number>9999</number>
               </property>
+              <property name="singleStep">
+               <number>5</number>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QSpinBox" name="m_northSpin">
               <property name="maximum">
                <number>9999</number>
+              </property>
+              <property name="singleStep">
+               <number>5</number>
               </property>
              </widget>
             </item>
@@ -176,7 +182,7 @@
         <item>
          <widget class="QPushButton" name="m_defaultScanAreaButton">
           <property name="text">
-           <string>Default Scan Area</string>
+           <string>Permatrace Scan Area</string>
           </property>
          </widget>
         </item>
