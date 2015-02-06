@@ -106,15 +106,21 @@ class ArkScan(QtGui.QMainWindow):
     def planName(self):
         name = self.ui.m_siteEdit.text() + '_'
         #TODO Use data?
+        useNumber = True
         if (self.ui.m_typeCombo.currentText() == 'Context'):
-            name += 'C'
+            pass
         elif (self.ui.m_typeCombo.currentText() == 'Plan'):
             name += 'P'
         elif (self.ui.m_typeCombo.currentText() == 'Section'):
             name += 'S'
+        elif (self.ui.m_typeCombo.currentText() == 'Top Plan'):
+            name += 'TP'
+            useNumber = False
         elif (self.ui.m_typeCombo.currentText() == 'Matrix'):
-            name += 'M'
-        name += str(self.ui.m_numberSpin.value())
+            name += 'Matrix'
+            useNumber = False
+        if (useNumber and self.ui.m_numberSpin.value() > 0)
+            name += str(self.ui.m_numberSpin.value())
         if (self.ui.m_suffixEdit.text() and self.ui.m_suffixEdit.text() != ' '):
             name += self.ui.m_suffixEdit.text()
         if (self.ui.m_eastSpin.value() != 0 and self.ui.m_northSpin.value() != 0):
