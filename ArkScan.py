@@ -34,6 +34,7 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_previewButton.clicked.connect(self.preview)
         self.ui.m_defaultScanAreaButton.clicked.connect(self.defaultScanArea)
         self.defaultScanArea()
+        self.ui.m_typeCombo.activated.connect(self.typeChanged)
         self.ui.m_scanButton.clicked.connect(self.scan)
         self.ui.m_detectCropAreaButton.clicked.connect(self.detectCropArea)
         self.ui.m_cropButton.clicked.connect(self.crop)
@@ -44,6 +45,9 @@ class ArkScan(QtGui.QMainWindow):
         self.scene = QtGui.QGraphicsScene(self)
         self.scanItem = self.scene.addPixmap(self.scanPixmap)
         self.ui.m_scanView.setScene(self.scene)
+        self.scene.setSceneRect(QtCore.QRectF(self.scanPixmap.rect()))
+        self.scene.update()
+        self.zoomToFit()
         #self.ui.m_scanView.setBackgroundBrush(QtGui.QBrush(QColor()))
 
         self.scanProcess = QtCore.QProcess()
@@ -98,10 +102,18 @@ class ArkScan(QtGui.QMainWindow):
     def updatePixmap(self):
         self.scanItem.setPixmap(self.scanPixmap)
         self.scene.setSceneRect(QtCore.QRectF(self.scanPixmap.rect()))
-        #TODO Zoom to fit
         self.scene.update()
-        self.ui.m_scanView.fitInView(self.scene.sceneRect(), QtCore.Qt.KeepAspectRatio)
+        self.zoomToFit()
         self.defaultCropArea()
+
+    def zoomToFit(self):
+        self.ui.m_scanView.fitInView(self.scene.sceneRect(), QtCore.Qt.KeepAspectRatio)
+
+    def typeChanged(self, newText):
+        if (self.ui.m_typeCombo.currentText() == 'Top Plan' or self.ui.m_typeCombo.currentText() == 'Matrix'):
+            self.ui.m_numberSpin.setEnabled(False)
+        else:
+            self.ui.m_numberSpin.setEnabled(True)
 
     def planName(self):
         name = self.ui.m_siteEdit.text() + '_'
@@ -119,15 +131,16 @@ class ArkScan(QtGui.QMainWindow):
         elif (self.ui.m_typeCombo.currentText() == 'Matrix'):
             name += 'Matrix'
             useNumber = False
-        if (useNumber and self.ui.m_numberSpin.value() > 0)
+        if (useNumber and self.ui.m_numberSpin.value() > 0):
             name += str(self.ui.m_numberSpin.value())
-        if (self.ui.m_suffixEdit.text() and self.ui.m_suffixEdit.text() != ' '):
-            name += self.ui.m_suffixEdit.text()
         if (self.ui.m_eastSpin.value() != 0 and self.ui.m_northSpin.value() != 0):
             name += '_E'
             name += str(self.ui.m_eastSpin.value())
             name += '_N'
             name += str(self.ui.m_northSpin.value())
+        if (self.ui.m_suffixEdit.text() and self.ui.m_suffixEdit.text() != ' '):
+            name += '_'
+            name += self.ui.m_suffixEdit.text()
         return name
 
     def showText(self, text):

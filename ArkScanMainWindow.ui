@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1089</width>
-    <height>931</height>
+    <width>1101</width>
+    <height>930</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,6 +19,9 @@
      <widget class="QSplitter" name="splitter_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>false</bool>
       </property>
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -70,6 +73,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Top Plan</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Matrix</string>
              </property>
             </item>
@@ -95,7 +103,7 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="m_gridLabel">
             <property name="text">
              <string>Grid Ref:</string>
@@ -105,7 +113,7 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="3" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QSpinBox" name="m_eastSpin">
@@ -129,20 +137,20 @@
             </item>
            </layout>
           </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="m_suffixEdit">
-            <property name="maxLength">
-             <number>1</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="m_suffixLabel">
             <property name="text">
              <string>Suffix:</string>
             </property>
             <property name="buddy">
              <cstring>m_suffixEdit</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="m_suffixEdit">
+            <property name="maxLength">
+             <number>10</number>
             </property>
            </widget>
           </item>
@@ -385,10 +393,37 @@
        </layout>
       </widget>
       <widget class="QSplitter" name="splitter">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <widget class="QGraphicsView" name="m_scanView">
+       <property name="childrenCollapsible">
+        <bool>false</bool>
+       </property>
+       <widget class="ArkScanGraphicsView" name="m_scanView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>800</width>
+          <height>650</height>
+         </size>
+        </property>
         <property name="autoFillBackground">
          <bool>true</bool>
         </property>
@@ -417,7 +452,14 @@
          <enum>QGraphicsView::RubberBandDrag</enum>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="m_outputText"/>
+       <widget class="QTextBrowser" name="m_outputText">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -428,7 +470,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1089</width>
+     <width>1101</width>
      <height>22</height>
     </rect>
    </property>
@@ -447,11 +489,17 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ArkScanGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>ark_scan_graphics_view.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>m_siteEdit</tabstop>
   <tabstop>m_typeCombo</tabstop>
   <tabstop>m_numberSpin</tabstop>
-  <tabstop>m_suffixEdit</tabstop>
   <tabstop>m_eastSpin</tabstop>
   <tabstop>m_northSpin</tabstop>
   <tabstop>m_scanSaveButton</tabstop>
