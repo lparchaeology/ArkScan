@@ -39,8 +39,8 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_detectCropAreaButton.clicked.connect(self.detectCropArea)
         self.ui.m_cropButton.clicked.connect(self.crop)
         self.ui.m_saveButton.clicked.connect(self.save)
-        self.ui.m_scanSaveButton.clicked.connect(self.scanSave)
-        self.ui.m_allButton.clicked.connect(self.all)
+        self.ui.m_scanSavePlanButton.clicked.connect(self.scanSave)
+        self.ui.m_scanCropSavePlanButton.clicked.connect(self.all)
         self.scanPixmap = QtGui.QPixmap('logo.png')
         self.scene = QtGui.QGraphicsScene(self)
         self.scanItem = self.scene.addPixmap(self.scanPixmap)
@@ -92,8 +92,8 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_hCropSpin.setEnabled(status)
         self.ui.m_cropButton.setEnabled(status)
         self.ui.m_saveButton.setEnabled(status)
-        self.ui.m_scanSaveButton.setEnabled(status)
-        self.ui.m_allButton.setEnabled(status)
+        self.ui.m_scanSavePlanButton.setEnabled(status)
+        self.ui.m_scanCropSavePlanButton.setEnabled(status)
         if (status):
             self.ui.m_progressBar.setRange(0, 100)
         else:

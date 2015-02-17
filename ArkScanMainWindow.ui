@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1101</width>
-    <height>930</height>
+    <height>954</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,49 @@
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <layout class="QFormLayout" name="formLayout">
+         <widget class="QPushButton" name="m_previewButton">
+          <property name="text">
+           <string>Preview</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_scanButton">
+          <property name="text">
+           <string>Scan</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_saveButton">
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Print</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Copy</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
            <widget class="QLabel" name="m_siteLabel">
             <property name="text">
@@ -157,9 +199,16 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="m_scanSaveButton">
+         <widget class="QPushButton" name="m_savePlanButton">
           <property name="text">
-           <string>Scan and Save</string>
+           <string>Save Plan</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_scanSavePlanButton">
+          <property name="text">
+           <string>Scan and Save Plan</string>
           </property>
           <property name="default">
            <bool>true</bool>
@@ -167,9 +216,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="m_allButton">
+         <widget class="QPushButton" name="m_scanCropSavePlanButton">
           <property name="text">
-           <string>Scan, Auto Crop and Save</string>
+           <string>Scan, Auto Crop and Save Plan</string>
           </property>
          </widget>
         </item>
@@ -181,18 +230,70 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="m_previewButton">
-          <property name="text">
-           <string>Preview</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_defaultScanAreaButton">
-          <property name="text">
-           <string>Permatrace Scan Area</string>
-          </property>
-         </widget>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="m_resolutionLabel">
+            <property name="text">
+             <string>Resolution:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="m_resolutionSpin"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="m_pageSizeLabel">
+            <property name="text">
+             <string>Page Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="m_pageSizeCombo">
+            <item>
+             <property name="text">
+              <string>Permatrace</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>A3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>A4</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>A5</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="m_orientationLabel">
+            <property name="text">
+             <string>Orientation</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="m_orientationCombo">
+            <item>
+             <property name="text">
+              <string>Portrait</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Landscape</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <layout class="QGridLayout" name="m_scanSizeLayout">
@@ -269,9 +370,9 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="m_scanButton">
-          <property name="text">
-           <string>Scan</string>
+         <widget class="Line" name="line_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
@@ -360,13 +461,6 @@
          <widget class="QPushButton" name="m_cropButton">
           <property name="text">
            <string>Crop</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_saveButton">
-          <property name="text">
-           <string>Save</string>
           </property>
          </widget>
         </item>
@@ -502,22 +596,18 @@
   <tabstop>m_numberSpin</tabstop>
   <tabstop>m_eastSpin</tabstop>
   <tabstop>m_northSpin</tabstop>
-  <tabstop>m_scanSaveButton</tabstop>
-  <tabstop>m_allButton</tabstop>
-  <tabstop>m_previewButton</tabstop>
-  <tabstop>m_defaultScanAreaButton</tabstop>
+  <tabstop>m_scanSavePlanButton</tabstop>
+  <tabstop>m_scanCropSavePlanButton</tabstop>
   <tabstop>m_xScanSpin</tabstop>
   <tabstop>m_yScanSpin</tabstop>
   <tabstop>m_wScanSpin</tabstop>
   <tabstop>m_hScanSpin</tabstop>
-  <tabstop>m_scanButton</tabstop>
   <tabstop>m_detectCropAreaButton</tabstop>
   <tabstop>m_xCropSpin</tabstop>
   <tabstop>m_yCropSpin</tabstop>
   <tabstop>m_wCropSpin</tabstop>
   <tabstop>m_hCropSpin</tabstop>
   <tabstop>m_cropButton</tabstop>
-  <tabstop>m_saveButton</tabstop>
   <tabstop>m_scanView</tabstop>
   <tabstop>m_outputText</tabstop>
  </tabstops>
