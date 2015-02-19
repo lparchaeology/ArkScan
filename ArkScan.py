@@ -9,13 +9,22 @@ class ArkScan(QtGui.QMainWindow):
     scanSavePath = '/filebin/1120L - 100 Minories/GIS/plans/incoming/scans/'
     cropSavePath = '/filebin/1120L - 100 Minories/GIS/plans/incoming/raw/'
     defaultSite = 'MNO12'
+    defaultType = 'Context'
     defaultEast = 100
     defaultNorth = 100
     defaultNumber = 1000
-    defaultScanX = 0
-    defaultScanY = 39
-    defaultScanW = 290
-    defaultScanH = 320
+    defaultSuffix = ''
+    defaultPageSize = 'Permatrace'
+    defaultResolution = 300
+    defaultOrientation = 'Portrait'
+    defaultOriginX = 0
+    defaultOriginY = 39
+    defaultWidth = 290
+    defaultHeight = 320
+    permatraceOriginX = 0
+    permatraceOriginY = 39
+    permatraceWidth = 290
+    permatraceHeight = 320
 
     # Internal flags
     useReader = False
@@ -27,20 +36,48 @@ class ArkScan(QtGui.QMainWindow):
         super(ArkScan, self).__init__()
         self.ui = ArkScanMainWindow.Ui_ArkScanMainWindow()
         self.ui.setupUi(self)
+        self.applyDefaultSettings()
+        self.setupUi()
+        self.setupProcess()
+        self.enableUi(True)
+
+    # Setup methods
+
+    def applyDefaultSettings(self):
         self.ui.m_siteEdit.setText(self.defaultSite)
+        self.ui.m_typeCombo.setText(self.defaultType)
+        self.ui.m_numberSpin.setValue(self.defaultNumber)
         self.ui.m_eastSpin.setValue(self.defaultEast)
         self.ui.m_northSpin.setValue(self.defaultNorth)
-        self.ui.m_numberSpin.setValue(self.defaultNumber)
+        self.ui.m_suffixEdit.setText(self.defaultSuffix)
+
+        self.ui.m_modeCombo.setText(self.defaultMode)
+        self.ui.m_resolutionCombo.setText(self.defaultResolution)
+        self.ui.m_pageSizeCombo.setText(self.defaultPageSize)
+        self.ui.m_orientationCombo.setText(self.defaultOrientation)
+        self.ui.m_xOriginSpin.setValue(self.defaultOriginX)
+        self.ui.m_yOriginSpin.setValue(self.defaultOriginY)
+        self.ui.m_widthSpin.setValue(self.defaultWidth)
+        self.ui.m_heightSpin.setValue(self.defaultHeight)
+
+    def setupUi(self):
         self.ui.m_previewButton.clicked.connect(self.preview)
-        self.ui.m_defaultScanAreaButton.clicked.connect(self.defaultScanArea)
-        self.defaultScanArea()
-        self.ui.m_typeCombo.activated.connect(self.typeChanged)
         self.ui.m_scanButton.clicked.connect(self.scan)
+        self.ui.m_saveButton.clicked.connect(self.save)
+        self.ui.m_printButton.clicked.connect(self.print)
+        self.ui.m_copyButton.clicked.connect(self.copy)
+
+        self.ui.m_typeCombo.activated.connect(self.typeChanged)
+        self.ui.m_savePlanButton.clicked.connect(self.savePlan)
+        self.ui.m_scanSavePlanButton.clicked.connect(self.scanSavePlan)
+        self.ui.m_scanCropSavePlanButton.clicked.connect(self.scanCropSavePlan)
+
+        self.ui.m_pageSizeCombo.activated.connect(self.pageSizeChanged)
+        self.ui.m_orientationCombo.activated.connect(self.orientationChanged)
+
         self.ui.m_detectCropAreaButton.clicked.connect(self.detectCropArea)
         self.ui.m_cropButton.clicked.connect(self.crop)
-        self.ui.m_saveButton.clicked.connect(self.save)
-        self.ui.m_scanSavePlanButton.clicked.connect(self.scanSave)
-        self.ui.m_scanCropSavePlanButton.clicked.connect(self.all)
+
         self.scanPixmap = QtGui.QPixmap('logo.png')
         self.scene = QtGui.QGraphicsScene(self)
         self.scanItem = self.scene.addPixmap(self.scanPixmap)
@@ -50,6 +87,7 @@ class ArkScan(QtGui.QMainWindow):
         self.zoomToFit()
         #self.ui.m_scanView.setBackgroundBrush(QtGui.QBrush(QColor()))
 
+    def setupProcess(self):
         self.scanProcess = QtCore.QProcess()
         self.scanProcess.started.connect(self.scanProcessStarted)
         self.scanProcess.finished.connect(self.scanProcessEnded)
@@ -72,32 +110,51 @@ class ArkScan(QtGui.QMainWindow):
         self.cropProcess.readyReadStandardError.connect(self.cropProcessError)
 
     def enableUi(self, status):
+        self.ui.m_previewButton.setEnabled(status)
+        self.ui.m_scanButton.setEnabled(status)
+        self.ui.m_saveButton.setEnabled(status)
+        self.ui.m_printButton.setEnabled(status)
+        self.ui.m_copyButton.setEnabled(status)
+
         self.ui.m_siteEdit.setEnabled(status)
         self.ui.m_typeCombo.setEnabled(status)
-        self.ui.m_numberSpin.setEnabled(status)
+        if status:
+            self.typeChanged(self.ui.m_typeCombo.currentText())
+        else:
+            self.ui.m_numberSpin.setEnabled(status)
         self.ui.m_suffixEdit.setEnabled(status)
         self.ui.m_eastSpin.setEnabled(status)
         self.ui.m_northSpin.setEnabled(status)
-        self.ui.m_previewButton.setEnabled(status)
-        self.ui.m_defaultScanAreaButton.setEnabled(status)
-        self.ui.m_xScanSpin.setEnabled(status)
-        self.ui.m_yScanSpin.setEnabled(status)
-        self.ui.m_hScanSpin.setEnabled(status)
-        self.ui.m_wScanSpin.setEnabled(status)
-        self.ui.m_scanButton.setEnabled(status)
+        self.ui.m_savePlanButton.setEnabled(status)
+        self.ui.m_savePlanButton.setEnabled(status)
+        self.ui.m_scanSavePlanButton.setEnabled(status)
+        self.ui.m_scanCropSavePlanButton.setEnabled(status)
+
+        self.ui.m_modeCombo.setEnabled(status)
+        self.ui.m_resolutionCombo.setEnabled(status)
+        self.ui.m_pageSizeCombo.setEnabled(status)
+        self.ui.m_orientationCombo.setEnabled(status)
+        self.ui.m_xOriginSpin.setEnabled(status)
+        self.ui.m_yOriginSpin.setEnabled(status)
+        self.ui.m_heightSpin.setEnabled(status)
+        self.ui.m_widthSpin.setEnabled(status)
+
         self.ui.m_detectCropAreaButton.setEnabled(status)
         self.ui.m_xCropSpin.setEnabled(status)
         self.ui.m_yCropSpin.setEnabled(status)
         self.ui.m_wCropSpin.setEnabled(status)
         self.ui.m_hCropSpin.setEnabled(status)
         self.ui.m_cropButton.setEnabled(status)
-        self.ui.m_saveButton.setEnabled(status)
-        self.ui.m_scanSavePlanButton.setEnabled(status)
-        self.ui.m_scanCropSavePlanButton.setEnabled(status)
+
         if (status):
             self.ui.m_progressBar.setRange(0, 100)
         else:
             self.ui.m_progressBar.setRange(0, 0)
+
+    # Utility methods
+
+    def showText(self, text):
+        self.ui.m_outputText.append(text)
 
     def updatePixmap(self):
         self.scanItem.setPixmap(self.scanPixmap)
@@ -109,11 +166,61 @@ class ArkScan(QtGui.QMainWindow):
     def zoomToFit(self):
         self.ui.m_scanView.fitInView(self.scene.sceneRect(), QtCore.Qt.KeepAspectRatio)
 
+    # General scanning methods
+
+    def preview(self):
+        self.doPreview()
+
+    def scan(self):
+        self.doScan()
+
+    def save(self):
+        pass
+
+    def print():
+        pass
+
+    def copy():
+        self.scan()
+        self.print()
+
+    # Context Plan methods
+
     def typeChanged(self, newText):
-        if (self.ui.m_typeCombo.currentText() == 'Top Plan' or self.ui.m_typeCombo.currentText() == 'Matrix'):
+        if (newText == 'Top Plan' or newText == 'Matrix'):
             self.ui.m_numberSpin.setEnabled(False)
         else:
             self.ui.m_numberSpin.setEnabled(True)
+
+    def savePlan(self):
+        if (self.status == 'invalid'):
+            return
+        self.enableUi(False)
+        filename = ''
+        if (self.status == 'scanned'):
+            filename = self.scanSavePath
+        else:
+            filename = self.cropSavePath
+        filename = filename + self.planName() + '.png'
+        ok = True
+        if (QtCore.QFileInfo(filename).exists()):
+            result = QtGui.QMessageBox.warning(None, 'File Already Exists!', 'The chosen scan file already exists. Do you want to overwrite it?', QtGui.QMessageBox.Save | QtGui.QMessageBox.Cancel)
+            if (result != QtGui.QMessageBox.Save):
+                ok = False
+        if (ok and self.scanPixmap.save(filename, 'PNG')):
+            self.showText('Image saved as ' + filename)
+        else:
+            self.showText('Image save as ' + filename + ' failed!')
+        self.enableUi(True)
+
+    def scanSavePlan(self):
+        self.saveAfterScan = True
+        self.scan()
+
+    def scanCropSavePlan(self):
+        self.saveAfterScan = True
+        self.cropAfterScan = True
+        self.scan()
 
     def planName(self):
         name = self.ui.m_siteEdit.text() + '_'
@@ -143,8 +250,7 @@ class ArkScan(QtGui.QMainWindow):
             name += self.ui.m_suffixEdit.text()
         return name
 
-    def showText(self, text):
-        self.ui.m_outputText.append(text)
+    # Scan process methods
 
     def scanProcessStarted(self):
         self.showText('Scanning image...')
@@ -213,7 +319,7 @@ class ArkScan(QtGui.QMainWindow):
     def showProcessError(self, process):
         self.showText(str(process.readAllStandardError()))
 
-    def preview(self):
+    def doPreview(self):
         self.enableUi(False)
         self.status = 'invalid'
         command = 'scanimage --mode Color --resolution 75 --lamp-off-at-exit=no'
@@ -223,16 +329,16 @@ class ArkScan(QtGui.QMainWindow):
             command += ' --format=tiff'
         self.scanProcess.start(command)
 
-    def defaultScanArea(self):
-        self.ui.m_xScanSpin.setValue(self.defaultScanX)
-        self.ui.m_yScanSpin.setValue(self.defaultScanY)
-        self.ui.m_wScanSpin.setValue(self.defaultScanW)
-        self.ui.m_hScanSpin.setValue(self.defaultScanH)
+    def setPermatraceScanArea(self):
+        self.ui.m_xOriginSpin.setValue(self.permatraceOriginX)
+        self.ui.m_yOriginSpin.setValue(self.permatraceOriginY)
+        self.ui.m_widthSpin.setValue(self.permatraceWidth)
+        self.ui.m_heightSpin.setValue(self.permatraceHeight)
 
-    def scan(self):
+    def doScan(self):
         self.enableUi(False)
         self.status = 'invalid'
-        scanRect = QtCore.QRect(self.ui.m_xScanSpin.value(), self.ui.m_yScanSpin.value(), self.ui.m_wScanSpin.value(), self.ui.m_hScanSpin.value())
+        scanRect = QtCore.QRect(self.ui.m_xOriginSpin.value(), self.ui.m_yOriginSpin.value(), self.ui.m_widthSpin.value(), self.ui.m_heightSpin.value())
         command = 'scanimage --mode Color --resolution 300 --lamp-off-at-exit=no -l%d -t%d -x%d -y%d' % (scanRect.x(), scanRect.y(), scanRect.width(), scanRect.height())
         if (not self.useReader):
             # PNM unsupported so write to temp file instead as TIFF can't be streamed
@@ -274,35 +380,7 @@ class ArkScan(QtGui.QMainWindow):
         else:
             self.enableUi(True)
 
-    def save(self):
-        if (self.status == 'invalid'):
-            return
-        self.enableUi(False)
-        filename = ''
-        if (self.status == 'scanned'):
-            filename = self.scanSavePath
-        else:
-            filename = self.cropSavePath
-        filename = filename + self.planName() + '.png'
-        ok = True
-        if (QtCore.QFileInfo(filename).exists()):
-            result = QtGui.QMessageBox.warning(None, 'File Already Exists!', 'The chosen scan file already exists. Do you want to overwrite it?', QtGui.QMessageBox.Save | QtGui.QMessageBox.Cancel)
-            if (result != QtGui.QMessageBox.Save):
-                ok = False
-        if (ok and self.scanPixmap.save(filename, 'PNG')):
-            self.showText('Image saved as ' + filename)
-        else:
-            self.showText('Image save as ' + filename + ' failed!')
-        self.enableUi(True)
-
-    def scanSave(self):
-        self.saveAfterScan = True
-        self.scan()
-
-    def all(self):
-        self.saveAfterScan = True
-        self.cropAfterScan = True
-        self.scan()
+# Application level code
 
 app = QtGui.QApplication(sys.argv)
 
