@@ -14,8 +14,9 @@ class ArkScan(QtGui.QMainWindow):
     defaultNorth = 100
     defaultNumber = 1000
     defaultSuffix = ''
+    defaultMode = 'Color'
     defaultPageSize = 'Permatrace'
-    defaultResolution = 300
+    defaultResolution = '300'
     defaultOrientation = 'Portrait'
     defaultOriginX = 0
     defaultOriginY = 39
@@ -45,16 +46,21 @@ class ArkScan(QtGui.QMainWindow):
 
     def applyDefaultSettings(self):
         self.ui.m_siteEdit.setText(self.defaultSite)
-        self.ui.m_typeCombo.setText(self.defaultType)
+        i = self.ui.m_typeCombo.findText(self.defaultType)
+        self.ui.m_typeCombo.setCurrentIndex(i)
         self.ui.m_numberSpin.setValue(self.defaultNumber)
         self.ui.m_eastSpin.setValue(self.defaultEast)
         self.ui.m_northSpin.setValue(self.defaultNorth)
         self.ui.m_suffixEdit.setText(self.defaultSuffix)
 
-        self.ui.m_modeCombo.setText(self.defaultMode)
-        self.ui.m_resolutionCombo.setText(self.defaultResolution)
-        self.ui.m_pageSizeCombo.setText(self.defaultPageSize)
-        self.ui.m_orientationCombo.setText(self.defaultOrientation)
+        i = self.ui.m_modeCombo.findText(self.defaultMode)
+        self.ui.m_modeCombo.setCurrentIndex(i)
+        i = self.ui.m_resolutionCombo.findText(self.defaultResolution)
+        self.ui.m_resolutionCombo.setCurrentIndex(i)
+        i = self.ui.m_pageSizeCombo.findText(self.defaultPageSize)
+        self.ui.m_pageSizeCombo.setCurrentIndex(i)
+        i = self.ui.m_orientationCombo.findText(self.defaultOrientation)
+        self.ui.m_orientationCombo.setCurrentIndex(i)
         self.ui.m_xOriginSpin.setValue(self.defaultOriginX)
         self.ui.m_yOriginSpin.setValue(self.defaultOriginY)
         self.ui.m_widthSpin.setValue(self.defaultWidth)
@@ -64,7 +70,7 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_previewButton.clicked.connect(self.preview)
         self.ui.m_scanButton.clicked.connect(self.scan)
         self.ui.m_saveButton.clicked.connect(self.save)
-        self.ui.m_printButton.clicked.connect(self.print)
+        self.ui.m_printButton.clicked.connect(self.printScan)
         self.ui.m_copyButton.clicked.connect(self.copy)
 
         self.ui.m_typeCombo.activated.connect(self.typeChanged)
@@ -175,14 +181,32 @@ class ArkScan(QtGui.QMainWindow):
         self.doScan()
 
     def save(self):
-        pass
+        saveFileName = QtGui.QFileDialog.getSaveFileName(self, 'Save Image As', '', "Images (*.png *.jpg *.tiff);;Documents (*.pdf)")
+        saveFileInfo = QtCore.QFileInfo(saveFileName)
+        if saveFileInfo.exists():
+            result = QtGui.QMessageBox.warning(None, 'File Already Exists!', 'The chosen file already exists. Do you want to overwrite it?', QtGui.QMessageBox.Save | QtGui.QMessageBox.Cancel)
+            if (result != QtGui.QMessageBox.Save):
+                return
+        format = saveFileInfo.suffix().toUpper()
+        if format == 'PDF':
+            pass
+        elif self.scanPixmap.save(saveFileName, format):
+            self.showText('Image saved as ' + saveFileName)
+        else:
+            self.showText('Image save as ' + saveFileName + ' failed!')
 
-    def print():
-        pass
+    def printScan(self):
+        printer = QtGui.QPrinter()
+        dialog = QtGui.QPrintDialog(printer, self)
+        if (dialog.exec_() == QtGui.QDialog.Accepted):
+            painter = QtGui.QPainter()
+            painter.begin(printer)
+            painter.drawPixmap(0, 0, self.scanPixmap)
+            painter.end()
 
     def copy():
         self.scan()
-        self.print()
+        self.printScan()
 
     # Context Plan methods
 
@@ -249,6 +273,16 @@ class ArkScan(QtGui.QMainWindow):
             name += '_'
             name += self.ui.m_suffixEdit.text()
         return name
+
+    # Scan options methods
+        self.ui.m_pageSizeCombo.activated.connect(self.pageSizeChanged)
+        self.ui.m_orientationCombo.activated.connect(self.orientationChanged)
+
+    def pageSizeChanged(self):
+        pass
+
+    def orientationChanged(self):
+        pass
 
     # Scan process methods
 
