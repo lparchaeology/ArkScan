@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1101</width>
-    <height>954</height>
+    <height>971</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -199,19 +199,19 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="m_savePlanButton">
-          <property name="text">
-           <string>Save Plan</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="m_scanSavePlanButton">
           <property name="text">
            <string>Scan and Save Plan</string>
           </property>
           <property name="default">
            <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_savePlanButton">
+          <property name="text">
+           <string>Save Plan</string>
           </property>
          </widget>
         </item>
@@ -564,7 +564,7 @@
        </property>
        <widget class="ArkScanGraphicsView" name="m_scanView">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -605,7 +605,7 @@
        </widget>
        <widget class="QTextBrowser" name="m_outputText">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -648,13 +648,23 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>m_previewButton</tabstop>
+  <tabstop>m_scanButton</tabstop>
+  <tabstop>m_saveButton</tabstop>
+  <tabstop>m_printButton</tabstop>
+  <tabstop>m_copyButton</tabstop>
   <tabstop>m_siteEdit</tabstop>
   <tabstop>m_typeCombo</tabstop>
   <tabstop>m_numberSpin</tabstop>
   <tabstop>m_eastSpin</tabstop>
   <tabstop>m_northSpin</tabstop>
-  <tabstop>m_scanSavePlanButton</tabstop>
+  <tabstop>m_suffixEdit</tabstop>
+  <tabstop>m_savePlanButton</tabstop>
   <tabstop>m_scanCropSavePlanButton</tabstop>
+  <tabstop>m_modeCombo</tabstop>
+  <tabstop>m_resolutionCombo</tabstop>
+  <tabstop>m_pageSizeCombo</tabstop>
+  <tabstop>m_orientationCombo</tabstop>
   <tabstop>m_xOriginSpin</tabstop>
   <tabstop>m_yOriginSpin</tabstop>
   <tabstop>m_widthSpin</tabstop>

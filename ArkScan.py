@@ -182,21 +182,26 @@ class ArkScan(QtGui.QMainWindow):
 
     def save(self):
         saveFileName = QtGui.QFileDialog.getSaveFileName(self, 'Save Image As', '', "Images (*.png *.jpg *.tiff);;Documents (*.pdf)")
+        if not saveFileName:
+            self.showText('Save cancelled')
+            return
         saveFileInfo = QtCore.QFileInfo(saveFileName)
-        if saveFileInfo.exists():
-            result = QtGui.QMessageBox.warning(None, 'File Already Exists!', 'The chosen file already exists. Do you want to overwrite it?', QtGui.QMessageBox.Save | QtGui.QMessageBox.Cancel)
-            if (result != QtGui.QMessageBox.Save):
-                return
         format = saveFileInfo.suffix().toUpper()
         if format == 'PDF':
-            pass
+            printer = QtGui.QPrinter(QtGui.QPrinter.HighResolution)
+            printer.setOutputFileName(saveFileName)
+            painter = QtGui.QPainter()
+            painter.begin(printer)
+            painter.drawPixmap(0, 0, self.scanPixmap)
+            painter.end()
+            self.showText('PDF saved as ' + saveFileName)
         elif self.scanPixmap.save(saveFileName, format):
             self.showText('Image saved as ' + saveFileName)
         else:
             self.showText('Image save as ' + saveFileName + ' failed!')
 
     def printScan(self):
-        printer = QtGui.QPrinter()
+        printer = QtGui.QPrinter(QtGui.QPrinter.HighResolution)
         dialog = QtGui.QPrintDialog(printer, self)
         if (dialog.exec_() == QtGui.QDialog.Accepted):
             painter = QtGui.QPainter()
@@ -226,12 +231,12 @@ class ArkScan(QtGui.QMainWindow):
         else:
             filename = self.cropSavePath
         filename = filename + self.planName() + '.png'
-        ok = True
+        action = QtGui.QMessageBox.Save
         if (QtCore.QFileInfo(filename).exists()):
-            result = QtGui.QMessageBox.warning(None, 'File Already Exists!', 'The chosen scan file already exists. Do you want to overwrite it?', QtGui.QMessageBox.Save | QtGui.QMessageBox.Cancel)
-            if (result != QtGui.QMessageBox.Save):
-                ok = False
-        if (ok and self.scanPixmap.save(filename, 'PNG')):
+            action = QtGui.QMessageBox.warning(None, 'File Already Exists!', 'The chosen scan file already exists. Do you want to overwrite it?', QtGui.QMessageBox.Save | QtGui.QMessageBox.Cancel)
+        if action == QtGui.QMessageBox.Cancel:
+            self.showText('Save cancelled')
+        elif self.scanPixmap.save(filename, 'PNG'):
             self.showText('Image saved as ' + filename)
         else:
             self.showText('Image save as ' + filename + ' failed!')
@@ -315,7 +320,7 @@ class ArkScan(QtGui.QMainWindow):
                 self.detectCropArea()
             elif (self.saveAfterScan):
                 self.saveAfterScan = False
-                self.save()
+                self.savePlan()
         self.enableUi(True)
 
     def scanProcessError(self):

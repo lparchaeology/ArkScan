@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ArkScanMainWindow.ui'
 #
-# Created: Thu Feb 19 16:05:42 2015
+# Created: Fri Feb 20 14:29:34 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_ArkScanMainWindow(object):
     def setupUi(self, ArkScanMainWindow):
         ArkScanMainWindow.setObjectName(_fromUtf8("ArkScanMainWindow"))
-        ArkScanMainWindow.resize(1101, 954)
+        ArkScanMainWindow.resize(1101, 971)
         self.centralwidget = QtGui.QWidget(ArkScanMainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -111,13 +111,13 @@ class Ui_ArkScanMainWindow(object):
         self.m_suffixEdit.setObjectName(_fromUtf8("m_suffixEdit"))
         self.gridLayout_3.addWidget(self.m_suffixEdit, 4, 1, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout_3)
-        self.m_savePlanButton = QtGui.QPushButton(self.layoutWidget)
-        self.m_savePlanButton.setObjectName(_fromUtf8("m_savePlanButton"))
-        self.verticalLayout.addWidget(self.m_savePlanButton)
         self.m_scanSavePlanButton = QtGui.QPushButton(self.layoutWidget)
         self.m_scanSavePlanButton.setDefault(True)
         self.m_scanSavePlanButton.setObjectName(_fromUtf8("m_scanSavePlanButton"))
         self.verticalLayout.addWidget(self.m_scanSavePlanButton)
+        self.m_savePlanButton = QtGui.QPushButton(self.layoutWidget)
+        self.m_savePlanButton.setObjectName(_fromUtf8("m_savePlanButton"))
+        self.verticalLayout.addWidget(self.m_savePlanButton)
         self.m_scanCropSavePlanButton = QtGui.QPushButton(self.layoutWidget)
         self.m_scanCropSavePlanButton.setObjectName(_fromUtf8("m_scanCropSavePlanButton"))
         self.verticalLayout.addWidget(self.m_scanCropSavePlanButton)
@@ -270,7 +270,7 @@ class Ui_ArkScanMainWindow(object):
         self.splitter.setChildrenCollapsible(False)
         self.splitter.setObjectName(_fromUtf8("splitter"))
         self.m_scanView = ArkScanGraphicsView(self.splitter)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding, QtGui.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding, QtGui.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.m_scanView.sizePolicy().hasHeightForWidth())
@@ -287,7 +287,7 @@ class Ui_ArkScanMainWindow(object):
         self.m_scanView.setDragMode(QtGui.QGraphicsView.RubberBandDrag)
         self.m_scanView.setObjectName(_fromUtf8("m_scanView"))
         self.m_outputText = QtGui.QTextBrowser(self.splitter)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.m_outputText.sizePolicy().hasHeightForWidth())
@@ -316,13 +316,23 @@ class Ui_ArkScanMainWindow(object):
 
         self.retranslateUi(ArkScanMainWindow)
         QtCore.QMetaObject.connectSlotsByName(ArkScanMainWindow)
+        ArkScanMainWindow.setTabOrder(self.m_previewButton, self.m_scanButton)
+        ArkScanMainWindow.setTabOrder(self.m_scanButton, self.m_saveButton)
+        ArkScanMainWindow.setTabOrder(self.m_saveButton, self.m_printButton)
+        ArkScanMainWindow.setTabOrder(self.m_printButton, self.m_copyButton)
+        ArkScanMainWindow.setTabOrder(self.m_copyButton, self.m_siteEdit)
         ArkScanMainWindow.setTabOrder(self.m_siteEdit, self.m_typeCombo)
         ArkScanMainWindow.setTabOrder(self.m_typeCombo, self.m_numberSpin)
         ArkScanMainWindow.setTabOrder(self.m_numberSpin, self.m_eastSpin)
         ArkScanMainWindow.setTabOrder(self.m_eastSpin, self.m_northSpin)
-        ArkScanMainWindow.setTabOrder(self.m_northSpin, self.m_scanSavePlanButton)
-        ArkScanMainWindow.setTabOrder(self.m_scanSavePlanButton, self.m_scanCropSavePlanButton)
-        ArkScanMainWindow.setTabOrder(self.m_scanCropSavePlanButton, self.m_xOriginSpin)
+        ArkScanMainWindow.setTabOrder(self.m_northSpin, self.m_suffixEdit)
+        ArkScanMainWindow.setTabOrder(self.m_suffixEdit, self.m_savePlanButton)
+        ArkScanMainWindow.setTabOrder(self.m_savePlanButton, self.m_scanCropSavePlanButton)
+        ArkScanMainWindow.setTabOrder(self.m_scanCropSavePlanButton, self.m_modeCombo)
+        ArkScanMainWindow.setTabOrder(self.m_modeCombo, self.m_resolutionCombo)
+        ArkScanMainWindow.setTabOrder(self.m_resolutionCombo, self.m_pageSizeCombo)
+        ArkScanMainWindow.setTabOrder(self.m_pageSizeCombo, self.m_orientationCombo)
+        ArkScanMainWindow.setTabOrder(self.m_orientationCombo, self.m_xOriginSpin)
         ArkScanMainWindow.setTabOrder(self.m_xOriginSpin, self.m_yOriginSpin)
         ArkScanMainWindow.setTabOrder(self.m_yOriginSpin, self.m_widthSpin)
         ArkScanMainWindow.setTabOrder(self.m_widthSpin, self.m_heightSpin)
@@ -353,8 +363,8 @@ class Ui_ArkScanMainWindow(object):
         self.m_numberSpin.setToolTip(_translate("ArkScanMainWindow", "Context Number", None))
         self.m_gridLabel.setText(_translate("ArkScanMainWindow", "Grid Ref:", None))
         self.m_suffixLabel.setText(_translate("ArkScanMainWindow", "Suffix:", None))
-        self.m_savePlanButton.setText(_translate("ArkScanMainWindow", "Save Plan", None))
         self.m_scanSavePlanButton.setText(_translate("ArkScanMainWindow", "Scan and Save Plan", None))
+        self.m_savePlanButton.setText(_translate("ArkScanMainWindow", "Save Plan", None))
         self.m_scanCropSavePlanButton.setText(_translate("ArkScanMainWindow", "Scan, Auto Crop and Save Plan", None))
         self.m_resolutionCombo.setItemText(0, _translate("ArkScanMainWindow", "600", None))
         self.m_resolutionCombo.setItemText(1, _translate("ArkScanMainWindow", "300", None))
