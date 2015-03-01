@@ -67,22 +67,23 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_heightSpin.setValue(self.defaultHeight)
 
     def setupUi(self):
-        self.ui.m_previewButton.clicked.connect(self.preview)
-        self.ui.m_scanButton.clicked.connect(self.scan)
-        self.ui.m_saveButton.clicked.connect(self.save)
-        self.ui.m_printButton.clicked.connect(self.printScan)
-        self.ui.m_copyButton.clicked.connect(self.copy)
+        self.ui.quitAction.triggered.connect(app.quit)
+        self.ui.m_previewAction.triggered.connect(self.preview)
+        self.ui.m_scanAction.triggered.connect(self.scan)
+        self.ui.m_saveAction.triggered.connect(self.save)
+        self.ui.m_printAction.triggered.connect(self.printScan)
+        self.ui.m_copyAction.triggered.connect(self.copy)
 
         self.ui.m_typeCombo.activated.connect(self.typeChanged)
-        self.ui.m_savePlanButton.clicked.connect(self.savePlan)
-        self.ui.m_scanSavePlanButton.clicked.connect(self.scanSavePlan)
-        self.ui.m_scanCropSavePlanButton.clicked.connect(self.scanCropSavePlan)
+        self.ui.m_savePlanAction.triggered.connect(self.savePlan)
+        self.ui.m_scanSavePlanAction.triggered.connect(self.scanSavePlan)
+        self.ui.m_scanCropSavePlanAction.triggered.connect(self.scanCropSavePlan)
 
         self.ui.m_pageSizeCombo.activated.connect(self.pageSizeChanged)
         self.ui.m_orientationCombo.activated.connect(self.orientationChanged)
 
-        self.ui.m_detectCropAreaButton.clicked.connect(self.detectCropArea)
-        self.ui.m_cropButton.clicked.connect(self.crop)
+        self.ui.m_detectCropAreaAction.triggered.connect(self.detectCropArea)
+        self.ui.m_cropAction.triggered.connect(self.crop)
 
         self.scanPixmap = QtGui.QPixmap('logo.png')
         self.scene = QtGui.QGraphicsScene(self)
@@ -116,11 +117,11 @@ class ArkScan(QtGui.QMainWindow):
         self.cropProcess.readyReadStandardError.connect(self.cropProcessError)
 
     def enableUi(self, status):
-        self.ui.m_previewButton.setEnabled(status)
-        self.ui.m_scanButton.setEnabled(status)
-        self.ui.m_saveButton.setEnabled(status)
-        self.ui.m_printButton.setEnabled(status)
-        self.ui.m_copyButton.setEnabled(status)
+        self.ui.m_previewAction.setEnabled(status)
+        self.ui.m_scanAction.setEnabled(status)
+        self.ui.m_saveAction.setEnabled(status)
+        self.ui.m_printAction.setEnabled(status)
+        self.ui.m_copyAction.setEnabled(status)
 
         self.ui.m_siteEdit.setEnabled(status)
         self.ui.m_typeCombo.setEnabled(status)
@@ -131,10 +132,10 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_suffixEdit.setEnabled(status)
         self.ui.m_eastSpin.setEnabled(status)
         self.ui.m_northSpin.setEnabled(status)
-        self.ui.m_savePlanButton.setEnabled(status)
-        self.ui.m_savePlanButton.setEnabled(status)
-        self.ui.m_scanSavePlanButton.setEnabled(status)
-        self.ui.m_scanCropSavePlanButton.setEnabled(status)
+        self.ui.m_savePlanAction.setEnabled(status)
+        self.ui.m_savePlanAction.setEnabled(status)
+        self.ui.m_scanSavePlanAction.setEnabled(status)
+        self.ui.m_scanCropSavePlanAction.setEnabled(status)
 
         self.ui.m_modeCombo.setEnabled(status)
         self.ui.m_resolutionCombo.setEnabled(status)
@@ -145,12 +146,12 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_heightSpin.setEnabled(status)
         self.ui.m_widthSpin.setEnabled(status)
 
-        self.ui.m_detectCropAreaButton.setEnabled(status)
+        self.ui.m_detectCropAreaAction.setEnabled(status)
         self.ui.m_xCropSpin.setEnabled(status)
         self.ui.m_yCropSpin.setEnabled(status)
         self.ui.m_wCropSpin.setEnabled(status)
         self.ui.m_hCropSpin.setEnabled(status)
-        self.ui.m_cropButton.setEnabled(status)
+        self.ui.m_cropAction.setEnabled(status)
 
         if (status):
             self.ui.m_progressBar.setRange(0, 100)

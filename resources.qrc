@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="scanIcon">
+    <file>scanner.png</file>
+  </qresource>
+  <qresource prefix="saveIcon">
+    <file>document-save.png</file>
+  </qresource>
+  <qresource prefix="printIcon">
+    <file>document-print.png</file>
+  </qresource>
+  <qresource prefix="copyIcon">
+    <file>edit-copy.png</file>
+  </qresource>
+  <qresource prefix="cropIcon">
+    <file>transform-crop.png</file>
+  </qresource>
+  <qresource prefix="autoCropIcon">
+    <file>transform-crop-and-resize.png</file>
+  </qresource>
+  <qresource prefix="previewIcon">
+    <file>document-preview.png</file>
+  </qresource>
+</RCC>

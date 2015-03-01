@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1101</width>
-    <height>971</height>
+    <width>1092</width>
+    <height>1008</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,499 +26,444 @@
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="m_previewButton">
-          <property name="text">
-           <string>Preview</string>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Scan Settings</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_scanButton">
-          <property name="text">
-           <string>Scan</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_saveButton">
-          <property name="text">
-           <string>Save</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_printButton">
-          <property name="text">
-           <string>Print</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_copyButton">
-          <property name="text">
-           <string>Copy</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QLabel" name="m_siteLabel">
-            <property name="text">
-             <string>Site:</string>
-            </property>
-            <property name="buddy">
-             <cstring>m_siteEdit</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="m_siteEdit">
-            <property name="readOnly">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="m_typeLabel">
-            <property name="text">
-             <string>Type:</string>
-            </property>
-            <property name="buddy">
-             <cstring>m_typeCombo</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="m_typeCombo">
-            <item>
-             <property name="text">
-              <string>Context</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Plan</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Section</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Top Plan</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Matrix</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="m_numberLabel">
-            <property name="text">
-             <string>Number:</string>
-            </property>
-            <property name="buddy">
-             <cstring>m_numberSpin</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="m_numberSpin">
-            <property name="toolTip">
-             <string>Context Number</string>
-            </property>
-            <property name="maximum">
-             <number>9999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="m_gridLabel">
-            <property name="text">
-             <string>Grid Ref:</string>
-            </property>
-            <property name="buddy">
-             <cstring>m_eastSpin</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QSpinBox" name="m_eastSpin">
-              <property name="maximum">
-               <number>9999</number>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="1" column="1">
+            <widget class="QComboBox" name="m_resolutionCombo">
+             <item>
+              <property name="text">
+               <string>600</string>
               </property>
-              <property name="singleStep">
-               <number>5</number>
+             </item>
+             <item>
+              <property name="text">
+               <string>300</string>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="m_northSpin">
-              <property name="maximum">
-               <number>9999</number>
+             </item>
+             <item>
+              <property name="text">
+               <string>150</string>
               </property>
-              <property name="singleStep">
-               <number>5</number>
+             </item>
+             <item>
+              <property name="text">
+               <string>75</string>
               </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="m_suffixLabel">
-            <property name="text">
-             <string>Suffix:</string>
-            </property>
-            <property name="buddy">
-             <cstring>m_suffixEdit</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="m_suffixEdit">
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_scanSavePlanButton">
-          <property name="text">
-           <string>Scan and Save Plan</string>
-          </property>
-          <property name="default">
-           <bool>true</bool>
-          </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>50</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="m_orientationCombo">
+             <item>
+              <property name="text">
+               <string>Portrait</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Landscape</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="m_orientationLabel">
+             <property name="text">
+              <string>Orientation</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="m_pageSizeCombo">
+             <item>
+              <property name="text">
+               <string>Permatrace</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>A3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>A4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>A5</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Custom</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="m_pageSizeLabel">
+             <property name="text">
+              <string>Page Size:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="m_resolutionLabel">
+             <property name="text">
+              <string>Resolution:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="m_modeCombo">
+             <item>
+              <property name="text">
+               <string>Color</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Grayscale</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Line</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="m_modeLabel">
+             <property name="text">
+              <string>Mode:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <layout class="QGridLayout" name="m_scanSizeLayout">
+             <item row="1" column="0">
+              <widget class="QLabel" name="m_xOriginLabel">
+               <property name="text">
+                <string>X:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="m_xOriginSpin">
+               <property name="maximum">
+                <number>297</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="m_yOriginLabel">
+               <property name="text">
+                <string>Y:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QSpinBox" name="m_yOriginSpin">
+               <property name="maximum">
+                <number>433</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="m_widthLabel">
+               <property name="text">
+                <string>W:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="m_widthSpin">
+               <property name="maximum">
+                <number>297</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLabel" name="m_heightLabel">
+               <property name="text">
+                <string>H:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QSpinBox" name="m_heightSpin">
+               <property name="maximum">
+                <number>433</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="m_scanSizeLabel1">
+               <property name="text">
+                <string>0mm - 297mm</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="m_scanSizeLabel2">
+               <property name="text">
+                <string>0mm - 433mm</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="m_savePlanButton">
-          <property name="text">
-           <string>Save Plan</string>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Plan Metadata</string>
           </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="1" column="0">
+            <widget class="QLabel" name="m_typeLabel">
+             <property name="text">
+              <string>Type:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="m_numberLabel">
+             <property name="text">
+              <string>Number:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="m_typeCombo">
+             <item>
+              <property name="text">
+               <string>Context</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Plan</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Section</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Top Plan</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Matrix</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="m_siteLabel">
+             <property name="text">
+              <string>Site:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="m_numberSpin">
+             <property name="toolTip">
+              <string>Context Number</string>
+             </property>
+             <property name="maximum">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="m_siteEdit">
+             <property name="readOnly">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="m_gridLabel">
+             <property name="text">
+              <string>Grid Ref:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QSpinBox" name="m_eastSpin">
+               <property name="maximum">
+                <number>9999</number>
+               </property>
+               <property name="singleStep">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="m_northSpin">
+               <property name="maximum">
+                <number>9999</number>
+               </property>
+               <property name="singleStep">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="m_suffixLabel">
+             <property name="text">
+              <string>Suffix:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="m_suffixEdit">
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0" colspan="2">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QPushButton" name="m_scanSavePlanButton">
+               <property name="text">
+                <string>Scan &amp;&amp; Save</string>
+               </property>
+               <property name="default">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="text">
+                <string>Save</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="m_scanCropSavePlanButton">
-          <property name="text">
-           <string>Scan, Auto Crop and Save Plan</string>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Crop Settings</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="1" column="1">
-           <widget class="QComboBox" name="m_resolutionCombo">
-            <item>
+          <layout class="QGridLayout" name="m_cropSizeLayout">
+           <item row="2" column="2">
+            <widget class="QLabel" name="m_hCropLabel">
              <property name="text">
-              <string>600</string>
+              <string>H:</string>
              </property>
-            </item>
-            <item>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QSpinBox" name="m_hCropSpin">
+             <property name="maximum">
+              <number>99999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="m_pixelLabel1">
              <property name="text">
-              <string>300</string>
+              <string>Pixels</string>
              </property>
-            </item>
-            <item>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="m_pixelLabel2">
              <property name="text">
-              <string>150</string>
+              <string>Pixels</string>
              </property>
-            </item>
-            <item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="m_xCropLabel">
              <property name="text">
-              <string>75</string>
+              <string>X:</string>
              </property>
-            </item>
-            <item>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="m_xCropSpin">
+             <property name="maximum">
+              <number>99999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="m_yCropLabel">
              <property name="text">
-              <string>50</string>
+              <string>Y:</string>
              </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="m_orientationCombo">
-            <item>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QSpinBox" name="m_yCropSpin">
+             <property name="maximum">
+              <number>99999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="m_wCropLabel">
              <property name="text">
-              <string>Portrait</string>
+              <string>W:</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Landscape</string>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="m_wCropSpin">
+             <property name="maximum">
+              <number>99999</number>
              </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="m_orientationLabel">
-            <property name="text">
-             <string>Orientation</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="m_pageSizeCombo">
-            <item>
-             <property name="text">
-              <string>Permatrace</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>A3</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>A4</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>A5</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Custom</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="m_pageSizeLabel">
-            <property name="text">
-             <string>Page Size:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="m_resolutionLabel">
-            <property name="text">
-             <string>Resolution:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="m_modeCombo">
-            <item>
-             <property name="text">
-              <string>Color</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Grayscale</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Line</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="m_modeLabel">
-            <property name="text">
-             <string>Mode:</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QGridLayout" name="m_scanSizeLayout">
-          <item row="1" column="0">
-           <widget class="QLabel" name="m_xOriginLabel">
-            <property name="text">
-             <string>X:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="m_xOriginSpin">
-            <property name="maximum">
-             <number>297</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QLabel" name="m_yOriginLabel">
-            <property name="text">
-             <string>Y:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="QSpinBox" name="m_yOriginSpin">
-            <property name="maximum">
-             <number>433</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="m_widthLabel">
-            <property name="text">
-             <string>W:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="m_widthSpin">
-            <property name="maximum">
-             <number>297</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QLabel" name="m_heightLabel">
-            <property name="text">
-             <string>H:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QSpinBox" name="m_heightSpin">
-            <property name="maximum">
-             <number>433</number>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="m_scanSizeLabel1">
-            <property name="text">
-             <string>0mm - 297mm</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="m_scanSizeLabel2">
-            <property name="text">
-             <string>0mm - 433mm</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="Line" name="line_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_detectCropAreaButton">
-          <property name="text">
-           <string>Detect Crop Area</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QGridLayout" name="m_cropSizeLayout">
-          <item row="1" column="0">
-           <widget class="QLabel" name="m_xCropLabel">
-            <property name="text">
-             <string>X:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="m_xCropSpin">
-            <property name="maximum">
-             <number>99999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QLabel" name="m_yCropLabel">
-            <property name="text">
-             <string>Y:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="QSpinBox" name="m_yCropSpin">
-            <property name="maximum">
-             <number>99999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="m_wCropLabel">
-            <property name="text">
-             <string>W:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="m_wCropSpin">
-            <property name="maximum">
-             <number>99999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QLabel" name="m_hCropLabel">
-            <property name="text">
-             <string>H:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QSpinBox" name="m_hCropSpin">
-            <property name="maximum">
-             <number>99999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="m_pixelLabel1">
-            <property name="text">
-             <string>Pixels</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="m_pixelLabel2">
-            <property name="text">
-             <string>Pixels</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_cropButton">
-          <property name="text">
-           <string>Crop</string>
-          </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="4">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QPushButton" name="m_detectCropAreaButton">
+               <property name="text">
+                <string>Detect</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="m_cropButton">
+               <property name="text">
+                <string>Crop</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
@@ -572,7 +517,7 @@
         <property name="minimumSize">
          <size>
           <width>800</width>
-          <height>650</height>
+          <height>400</height>
          </size>
         </property>
         <property name="autoFillBackground">
@@ -610,6 +555,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -621,7 +572,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1101</width>
+     <width>1092</width>
      <height>22</height>
     </rect>
    </property>
@@ -629,14 +580,153 @@
     <property name="title">
      <string>ArkScan</string>
     </property>
-    <addaction name="m_quitAction"/>
+    <addaction name="quitAction"/>
+   </widget>
+   <widget class="QMenu" name="menuScan">
+    <property name="title">
+     <string>Scan</string>
+    </property>
+    <addaction name="m_previewAction"/>
+    <addaction name="m_scanAction"/>
+    <addaction name="m_saveAction"/>
+    <addaction name="m_printAction"/>
+    <addaction name="m_copyAction"/>
+   </widget>
+   <widget class="QMenu" name="menuPlan">
+    <property name="title">
+     <string>Plan</string>
+    </property>
+    <addaction name="m_scanPlanAction"/>
+    <addaction name="m_savePlanAction"/>
+    <addaction name="m_scanSavePlanAction"/>
+    <addaction name="m_scanCropSavePlanAction"/>
+   </widget>
+   <widget class="QMenu" name="menuCrop">
+    <property name="title">
+     <string>Crop</string>
+    </property>
+    <addaction name="m_detectCropAreaAction"/>
+    <addaction name="m_cropAction"/>
    </widget>
    <addaction name="m_menu"/>
+   <addaction name="menuScan"/>
+   <addaction name="menuPlan"/>
+   <addaction name="menuCrop"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="m_quitAction">
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="m_previewAction"/>
+   <addaction name="m_scanAction"/>
+   <addaction name="m_saveAction"/>
+   <addaction name="m_printAction"/>
+   <addaction name="m_copyAction"/>
+   <addaction name="separator"/>
+   <addaction name="m_scanPlanAction"/>
+   <addaction name="m_savePlanAction"/>
+  </widget>
+  <action name="quitAction">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="m_previewAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/previewIcon/document-preview.png</normaloff>:/previewIcon/document-preview.png</iconset>
+   </property>
+   <property name="text">
+    <string>P&amp;review</string>
+   </property>
+  </action>
+  <action name="m_scanAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/scanIcon/scanner.png</normaloff>:/scanIcon/scanner.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sca&amp;n</string>
+   </property>
+  </action>
+  <action name="m_printAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/printIcon/document-print.png</normaloff>:/printIcon/document-print.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Print</string>
+   </property>
+  </action>
+  <action name="m_saveAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/saveIcon/document-save.png</normaloff>:/saveIcon/document-save.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+  </action>
+  <action name="m_copyAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/copyIcon/edit-copy.png</normaloff>:/copyIcon/edit-copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Copy</string>
+   </property>
+  </action>
+  <action name="m_scanSavePlanAction">
+   <property name="text">
+    <string>Scan &amp;&amp; Save</string>
+   </property>
+  </action>
+  <action name="m_savePlanAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/saveIcon/document-save.png</normaloff>:/saveIcon/document-save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Plan</string>
+   </property>
+  </action>
+  <action name="m_scanPlanAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/scanIcon/scanner.png</normaloff>:/scanIcon/scanner.png</iconset>
+   </property>
+   <property name="text">
+    <string>Scan Plan</string>
+   </property>
+  </action>
+  <action name="m_scanCropSavePlanAction">
+   <property name="text">
+    <string>Scan, Crop, &amp;&amp; Save</string>
+   </property>
+  </action>
+  <action name="m_detectCropAreaAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/autoCropIcon/transform-crop-and-resize.png</normaloff>:/autoCropIcon/transform-crop-and-resize.png</iconset>
+   </property>
+   <property name="text">
+    <string>DetectCrop Area</string>
+   </property>
+  </action>
+  <action name="m_cropAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/cropIcon/transform-crop.png</normaloff>:/cropIcon/transform-crop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Crop</string>
    </property>
   </action>
  </widget>
@@ -648,19 +738,12 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>m_previewButton</tabstop>
-  <tabstop>m_scanButton</tabstop>
-  <tabstop>m_saveButton</tabstop>
-  <tabstop>m_printButton</tabstop>
-  <tabstop>m_copyButton</tabstop>
   <tabstop>m_siteEdit</tabstop>
   <tabstop>m_typeCombo</tabstop>
   <tabstop>m_numberSpin</tabstop>
   <tabstop>m_eastSpin</tabstop>
   <tabstop>m_northSpin</tabstop>
   <tabstop>m_suffixEdit</tabstop>
-  <tabstop>m_savePlanButton</tabstop>
-  <tabstop>m_scanCropSavePlanButton</tabstop>
   <tabstop>m_modeCombo</tabstop>
   <tabstop>m_resolutionCombo</tabstop>
   <tabstop>m_pageSizeCombo</tabstop>
@@ -669,15 +752,15 @@
   <tabstop>m_yOriginSpin</tabstop>
   <tabstop>m_widthSpin</tabstop>
   <tabstop>m_heightSpin</tabstop>
-  <tabstop>m_detectCropAreaButton</tabstop>
   <tabstop>m_xCropSpin</tabstop>
   <tabstop>m_yCropSpin</tabstop>
   <tabstop>m_wCropSpin</tabstop>
   <tabstop>m_hCropSpin</tabstop>
-  <tabstop>m_cropButton</tabstop>
   <tabstop>m_scanView</tabstop>
   <tabstop>m_outputText</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
