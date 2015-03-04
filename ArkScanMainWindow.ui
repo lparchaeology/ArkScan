@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1092</width>
-    <height>1008</height>
+    <width>921</width>
+    <height>841</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -516,7 +516,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>800</width>
+          <width>600</width>
           <height>400</height>
          </size>
         </property>
@@ -572,7 +572,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1092</width>
+     <width>921</width>
      <height>22</height>
     </rect>
    </property>
@@ -632,6 +632,9 @@
    <addaction name="separator"/>
    <addaction name="m_scanPlanAction"/>
    <addaction name="m_savePlanAction"/>
+   <addaction name="separator"/>
+   <addaction name="m_detectCropAreaAction"/>
+   <addaction name="m_cropAction"/>
   </widget>
   <action name="quitAction">
    <property name="text">

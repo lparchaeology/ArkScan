@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ArkScanMainWindow.ui'
 #
-# Created: Sun Mar  1 17:53:45 2015
+# Created: Wed Mar  4 08:27:40 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_ArkScanMainWindow(object):
     def setupUi(self, ArkScanMainWindow):
         ArkScanMainWindow.setObjectName(_fromUtf8("ArkScanMainWindow"))
-        ArkScanMainWindow.resize(1092, 1008)
+        ArkScanMainWindow.resize(921, 841)
         self.centralwidget = QtGui.QWidget(ArkScanMainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -254,7 +254,7 @@ class Ui_ArkScanMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.m_scanView.sizePolicy().hasHeightForWidth())
         self.m_scanView.setSizePolicy(sizePolicy)
-        self.m_scanView.setMinimumSize(QtCore.QSize(800, 400))
+        self.m_scanView.setMinimumSize(QtCore.QSize(600, 400))
         self.m_scanView.setAutoFillBackground(True)
         brush = QtGui.QBrush(QtGui.QColor(195, 195, 195))
         brush.setStyle(QtCore.Qt.NoBrush)
@@ -276,7 +276,7 @@ class Ui_ArkScanMainWindow(object):
         self.gridLayout.addWidget(self.splitter_2, 0, 0, 1, 1)
         ArkScanMainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(ArkScanMainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1092, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 921, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.m_menu = QtGui.QMenu(self.menubar)
         self.m_menu.setObjectName(_fromUtf8("m_menu"))
