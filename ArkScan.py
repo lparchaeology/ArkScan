@@ -24,8 +24,12 @@ class ArkScan(QtGui.QMainWindow):
     defaultHeight = 320
     permatraceOriginX = 0
     permatraceOriginY = 39
-    permatraceWidth = 290
-    permatraceHeight = 320
+
+    pageSizes = { 'Permatrace' : [290, 320],
+                  'A3'         : [297, 420],
+                  'A4'         : [210, 297],
+                  'A5'         : [148, 210],
+                  'Custom'     : [297, 433]}
 
     # Internal flags
     useReader = False
@@ -61,10 +65,7 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_pageSizeCombo.setCurrentIndex(i)
         i = self.ui.m_orientationCombo.findText(self.defaultOrientation)
         self.ui.m_orientationCombo.setCurrentIndex(i)
-        self.ui.m_xOriginSpin.setValue(self.defaultOriginX)
-        self.ui.m_yOriginSpin.setValue(self.defaultOriginY)
-        self.ui.m_widthSpin.setValue(self.defaultWidth)
-        self.ui.m_heightSpin.setValue(self.defaultHeight)
+
 
     def setupUi(self):
         self.ui.quitAction.triggered.connect(app.quit)
@@ -132,7 +133,6 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_suffixEdit.setEnabled(status)
         self.ui.m_eastSpin.setEnabled(status)
         self.ui.m_northSpin.setEnabled(status)
-        self.ui.m_savePlanAction.setEnabled(status)
         self.ui.m_savePlanAction.setEnabled(status)
         self.ui.m_scanSavePlanAction.setEnabled(status)
         self.ui.m_scanCropSavePlanAction.setEnabled(status)
@@ -280,15 +280,26 @@ class ArkScan(QtGui.QMainWindow):
             name += self.ui.m_suffixEdit.text()
         return name
 
-    # Scan options methods
-        self.ui.m_pageSizeCombo.activated.connect(self.pageSizeChanged)
-        self.ui.m_orientationCombo.activated.connect(self.orientationChanged)
-
     def pageSizeChanged(self):
-        pass
+        self.setPageSize(self.ui.m_pageSizeCombo.currentText())
 
     def orientationChanged(self):
-        pass
+        self.setPageSize(self.ui.m_pageSizeCombo.currentText())
+
+    def setPageSize(self, page):
+        size = self.pageSizes[str(page)]
+        if self.ui.m_orientationCombo.currentText() == 'Landscape':
+            self.ui.m_widthSpin.setValue(size[1])
+            self.ui.m_heightSpin.setValue(size[0])
+        else:
+            self.ui.m_widthSpin.setValue(size[0])
+            self.ui.m_heightSpin.setValue(size[1])
+        if page == 'Custom':
+            self.ui.m_widthSpin.setEnabled(True)
+            self.ui.m_heightSpin.setEnabled(True)
+        else:
+            self.ui.m_widthSpin.setEnabled(False)
+            self.ui.m_heightSpin.setEnabled(False)
 
     # Scan process methods
 
@@ -372,8 +383,7 @@ class ArkScan(QtGui.QMainWindow):
     def setPermatraceScanArea(self):
         self.ui.m_xOriginSpin.setValue(self.permatraceOriginX)
         self.ui.m_yOriginSpin.setValue(self.permatraceOriginY)
-        self.ui.m_widthSpin.setValue(self.permatraceWidth)
-        self.ui.m_heightSpin.setValue(self.permatraceHeight)
+        self.setPageSize('Permatrace')
 
     def doScan(self):
         self.enableUi(False)

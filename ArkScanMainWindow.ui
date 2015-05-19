@@ -60,97 +60,7 @@
              </item>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QComboBox" name="m_orientationCombo">
-             <item>
-              <property name="text">
-               <string>Portrait</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Landscape</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="m_orientationLabel">
-             <property name="text">
-              <string>Orientation</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QComboBox" name="m_pageSizeCombo">
-             <item>
-              <property name="text">
-               <string>Permatrace</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>A3</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>A4</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>A5</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Custom</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="m_pageSizeLabel">
-             <property name="text">
-              <string>Page Size:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="m_resolutionLabel">
-             <property name="text">
-              <string>Resolution:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="m_modeCombo">
-             <item>
-              <property name="text">
-               <string>Color</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Grayscale</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Line</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="m_modeLabel">
-             <property name="text">
-              <string>Mode:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0" colspan="2">
+           <item row="5" column="0" colspan="2">
             <layout class="QGridLayout" name="m_scanSizeLayout">
              <item row="1" column="0">
               <widget class="QLabel" name="m_xOriginLabel">
@@ -223,6 +133,96 @@
               </widget>
              </item>
             </layout>
+           </item>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="m_pageSizeCombo">
+             <item>
+              <property name="text">
+               <string>Permatrace</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>A3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>A4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>A5</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Custom</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="m_pageSizeLabel">
+             <property name="text">
+              <string>Page Size:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="m_modeCombo">
+             <item>
+              <property name="text">
+               <string>Color</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Grayscale</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Line</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="m_resolutionLabel">
+             <property name="text">
+              <string>Resolution:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="m_modeLabel">
+             <property name="text">
+              <string>Mode:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="m_orientationLabel">
+             <property name="text">
+              <string>Orientation:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="m_orientationCombo">
+             <item>
+              <property name="text">
+               <string>Portrait</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Landscape</string>
+              </property>
+             </item>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -610,8 +610,8 @@
    </widget>
    <addaction name="m_menu"/>
    <addaction name="menuScan"/>
-   <addaction name="menuPlan"/>
    <addaction name="menuCrop"/>
+   <addaction name="menuPlan"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -750,7 +750,6 @@
   <tabstop>m_modeCombo</tabstop>
   <tabstop>m_resolutionCombo</tabstop>
   <tabstop>m_pageSizeCombo</tabstop>
-  <tabstop>m_orientationCombo</tabstop>
   <tabstop>m_xOriginSpin</tabstop>
   <tabstop>m_yOriginSpin</tabstop>
   <tabstop>m_widthSpin</tabstop>
