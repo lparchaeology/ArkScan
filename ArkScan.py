@@ -373,7 +373,7 @@ class ArkScan(QtGui.QMainWindow):
     def doPreview(self):
         self.enableUi(False)
         self.status = 'invalid'
-        command = 'scanimage --mode Color --resolution 75 --lamp-off-at-exit=no'
+        command = 'scanimage --mode Grayscale --resolution 75 --lamp-off-at-exit=no'
         if (not self.useReader):
             # PNM unsupported so write to temp file instead as TIFF can't be streamed
             self.scanProcess.setStandardOutputFile('temp.tiff')
@@ -389,7 +389,7 @@ class ArkScan(QtGui.QMainWindow):
         self.enableUi(False)
         self.status = 'invalid'
         scanRect = QtCore.QRect(self.ui.m_xOriginSpin.value(), self.ui.m_yOriginSpin.value(), self.ui.m_widthSpin.value(), self.ui.m_heightSpin.value())
-        command = 'scanimage --mode Color --resolution 300 --lamp-off-at-exit=no -l%d -t%d -x%d -y%d' % (scanRect.x(), scanRect.y(), scanRect.width(), scanRect.height())
+        command = 'scanimage --mode %s --resolution %s --lamp-off-at-exit=no -l%d -t%d -x%d -y%d' % (self.ui.m_modeCombo.currentText(), self.ui.m_resolutionCombo.currentText(), scanRect.x(), scanRect.y(), scanRect.width(), scanRect.height())
         if (not self.useReader):
             # PNM unsupported so write to temp file instead as TIFF can't be streamed
             self.scanProcess.setStandardOutputFile('temp.tiff')
