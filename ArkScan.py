@@ -61,11 +61,13 @@ class ArkScan(QtGui.QMainWindow):
         self.ui.m_modeCombo.setCurrentIndex(i)
         i = self.ui.m_resolutionCombo.findText(self.defaultResolution)
         self.ui.m_resolutionCombo.setCurrentIndex(i)
-        i = self.ui.m_pageSizeCombo.findText(self.defaultPageSize)
-        self.ui.m_pageSizeCombo.setCurrentIndex(i)
         i = self.ui.m_orientationCombo.findText(self.defaultOrientation)
         self.ui.m_orientationCombo.setCurrentIndex(i)
-
+        i = self.ui.m_pageSizeCombo.findText(self.defaultPageSize)
+        self.ui.m_pageSizeCombo.setCurrentIndex(i)
+        self.setPageSize(self.defaultPageSize)
+        self.ui.m_xOriginSpin.setValue(self.defaultOriginX)
+        self.ui.m_yOriginSpin.setValue(self.defaultOriginY)
 
     def setupUi(self):
         self.ui.quitAction.triggered.connect(app.quit)

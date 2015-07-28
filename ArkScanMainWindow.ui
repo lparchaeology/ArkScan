@@ -358,7 +358,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="m_savePlanButton">
                <property name="text">
                 <string>Save</string>
                </property>
@@ -764,5 +764,38 @@
  <resources>
   <include location="resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>m_scanSavePlanButton</sender>
+   <signal>clicked()</signal>
+   <receiver>m_scanSavePlanAction</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>91</x>
+     <y>543</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_savePlanButton</sender>
+   <signal>clicked()</signal>
+   <receiver>m_savePlanAction</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>221</x>
+     <y>543</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
